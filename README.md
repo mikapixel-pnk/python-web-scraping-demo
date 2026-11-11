@@ -67,6 +67,7 @@ Tests cover parsing, pagination, price/rating validation, duplicate detection, r
 | `tests/test_scraper.py` | Offline automated tests |
 | `examples/catalogue_page_1.html` | Synthetic fixture with pagination |
 | `examples/catalogue_page_2.html` | Synthetic fixture (last page) |
+| `examples/books_demo_sample.csv` | Previewable synthetic three-row sample | 
 | `requirements.txt` | Python dependencies |
 | `.github/workflows/tests.yml` | GitHub Actions continuous integration |
 
