@@ -49,7 +49,7 @@ The practice site has traditionally contained about 1,000 book listings, but **r
 
 The example above is synthetic. Real exports contain the listings returned by the website at run time.
 
-**Sample Excel:** `examples/books_demo_sample.xlsx` is an optional downloadable sample generated from the included HTML fixtures; it contains three **synthetic** rows. If it has not yet been uploaded, run the tests and a real scrape to generate your own workbook.
+**Sample Excel:** Every successful [GitHub Actions run](https://github.com/mikapixel-pnk/python-web-scraping-demo/actions/workflows/tests.yml) generates a downloadable artifact named **`books-demo-synthetic-xlsx`**, with a three-row synthetic workbook built from the included HTML fixtures. This is *not* a live scrape. For a full dataset, run `scraper.py` against the practice website.
 
 ## Offline tests
 
