@@ -1,0 +1,50 @@
+name: Python scraper tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run offline tests
+        run: python -m unittest discover -s tests -v
+      - name: Generate synthetic sample workbook
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from scraper import parse_listing, to_dataframe, validate_dataframe, export_excel
+
+          pages = [
+              ("https://books.toscrape.com/", "examples/catalogue_page_1.html"),
+              ("https://books.toscrape.com/catalogue/page-2.html", "examples/catalogue_page_2.html"),
+          ]
+          books = []
+          for url, filename in pages:
+              parsed, _ = parse_listing(Path(filename).read_text(encoding="utf-8"), url)
+              books.extend(parsed)
+          data = to_dataframe(books)
+          validate_dataframe(data, expected_count=3)
+          export_excel(data, Path("books_demo_sample.xlsx"))
+          print("Created synthetic 3-row demonstration workbook.")
+          PY
+      - name: Upload demo Excel workbook
+        uses: actions/upload-artifact@v4
+        with:
+          name: books-demo-synthetic-xlsx
+          path: books_demo_sample.xlsx
+          if-no-files-found: error
