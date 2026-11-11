@@ -1,0 +1,4 @@
+Product Name,Availability,Product URL,Price GBP,Rating
+Sample Book Alpha,In stock,https://books.toscrape.com/catalogue/sample-book-alpha_1/index.html,12.50,3
+Sample Book Beta,In stock,https://books.toscrape.com/catalogue/sample-book-beta_2/index.html,21.99,5
+Sample Book Gamma,In stock,https://books.toscrape.com/catalogue/sample-book-gamma_3/index.html,7.25,1
